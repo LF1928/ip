@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+
 
 public class LfChat {
     public static void main(String[] args) {
@@ -16,39 +18,85 @@ public class LfChat {
 
         Scanner scanner = new Scanner(System.in);
         String userInput;
-        String[] listOfTasks = new String[100];
-        int count = 1;
+        ArrayList<Task> listOfTasks = new ArrayList<>();
 
         while (true) {
             userInput = scanner.nextLine();
 
             if (userInput.equalsIgnoreCase("bye")) {
-                System.out.println("____________________________________________________________");
-                System.out.println(" Bye. Hope to see you again soon!");
-                System.out.println("____________________________________________________________");
+                bye();
                 break;
             }
 
             if (userInput.equalsIgnoreCase("list")) {
-                System.out.println("____________________________________________________________");
-                for (String task : listOfTasks) {
-                    if (task != null) {
-                        System.out.println(task);
-                    }
-                }
-                System.out.println("____________________________________________________________");
+                listTasks(listOfTasks);
                 continue;
             }
+
+            if (userInput.startsWith("mark ")) {
+                int taskNumber = Integer.parseInt(userInput.split(" ")[1]);
+                markAsDone(listOfTasks, taskNumber);
+                continue;
+            }
+
+            if (userInput.startsWith("unmark ")) {
+                int taskNumber = Integer.parseInt(userInput.split(" ")[1]);
+                markAsUndone(listOfTasks, taskNumber);
+                continue;
+            }
+            Task task = new Task(userInput);
+
+            listOfTasks.add(task);
             System.out.println("____________________________________________________________");
             System.out.println("added: " + userInput);
             System.out.println("____________________________________________________________");
-            
-            listOfTasks[count-1] = count + ". " + userInput;
-            count += 1;
+
         }
 
         scanner.close();
 
     }
+    public static void listTasks(ArrayList<Task> listOfTasks) {
+        System.out.println("____________________________________________________________");
+        System.out.println(" Here are the tasks in your list:");
+        for (int i = 0; i < listOfTasks.size(); i++) {
+            System.out.println(" " + (i + 1) + "." + listOfTasks.get(i).toString());
+        }
+        System.out.println("____________________________________________________________");
+    }
+
+    public static void bye() {
+        System.out.println("____________________________________________________________");
+        System.out.println(" Bye. Hope to see you again soon!");
+        System.out.println("____________________________________________________________");
+    }
+
+    public static void markAsDone(ArrayList<Task> listOfTasks, int taskNumber) {
+        if (taskNumber <= 0 || taskNumber > listOfTasks.size()) {
+            System.out.println("Invalid task number!");
+            return;
+        }
+
+        listOfTasks.get(taskNumber - 1).markAsDone();
+
+        System.out.println("____________________________________________________________");
+        System.out.println("Nice! I've marked this task as done:");
+        System.out.println("  " + listOfTasks.get(taskNumber - 1).toString());
+        System.out.println("____________________________________________________________");
+    }
+    public static void markAsUndone(ArrayList<Task> listOfTasks, int taskNumber) {
+        if (taskNumber <= 0 || taskNumber > listOfTasks.size()) {
+            System.out.println("Invalid task number!");
+            return;
+        }
+
+        listOfTasks.get(taskNumber - 1).markAsUndone();
+
+        System.out.println("____________________________________________________________");
+        System.out.println("OK, I've marked this task as not done yet:");
+        System.out.println("  " + listOfTasks.get(taskNumber - 1).toString());
+        System.out.println("____________________________________________________________");
+    }
+
 
 }
