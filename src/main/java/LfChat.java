@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 
 public class LfChat {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MissingDescriptionException{
         String logo = "  _      ______   _____ _           _\n"
                 + " | |    |  ____| |  __ || |         | |\n"
                 + " | |    | |__    | |    | |__   __| |\n"
@@ -49,12 +49,14 @@ public class LfChat {
             if (userInput.startsWith("todo ")) {
                 String description = userInput.substring(5);
                 task = new ToDos(description);
+                addPrintTask(listOfTasks, task);
             }
 
             if (userInput.startsWith("deadline ")) {
                 String description = userInput.substring(9, userInput.indexOf("/by")).trim();
                 String deadline = userInput.substring(userInput.indexOf("/by") + 4).trim();
                 task = new Deadlines(description, deadline);
+                addPrintTask(listOfTasks, task);
 
             }
             if (userInput.startsWith("event ")) {
@@ -62,15 +64,13 @@ public class LfChat {
                 String startTime = userInput.substring(userInput.indexOf("/from") + 6, userInput.indexOf("/to")).trim();
                 String endTime = userInput.substring(userInput.indexOf("/to") + 4).trim();
                 task = new Events(description, startTime, endTime);
-
+                addPrintTask(listOfTasks, task);
             }
-
-            listOfTasks.add(task);
-            System.out.println("____________________________________________________________");
-            System.out.println(" Got it. I've added this task:");
-            System.out.println("  " + task.toString());
-            System.out.println(" Now you have " + listOfTasks.size() + " tasks in the list.");
-            System.out.println("____________________________________________________________");
+            else {
+                System.out.println("____________________________________________________________");
+                System.out.println(" Sorry, the command does not exist :<");
+                System.out.println("____________________________________________________________");
+            }
 
         }
 
@@ -116,6 +116,18 @@ public class LfChat {
         System.out.println("____________________________________________________________");
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println("  " + listOfTasks.get(taskNumber - 1).toString());
+        System.out.println("____________________________________________________________");
+    }
+
+    public static void addPrintTask(ArrayList<Task> listOfTasks, Task task) throws MissingDescriptionException {
+        if (task.getDescription().isEmpty()) {
+            throw new MissingDescriptionException("Description for the tasks cannot be empty.");
+        }
+        listOfTasks.add(task);
+        System.out.println("____________________________________________________________");
+        System.out.println(" Got it. I've added this task:");
+        System.out.println("  " + task.toString());
+        System.out.println(" Now you have " + listOfTasks.size() + " tasks in the list.");
         System.out.println("____________________________________________________________");
     }
 
