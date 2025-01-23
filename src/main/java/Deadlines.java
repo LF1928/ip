@@ -1,7 +1,4 @@
 public class Deadlines extends Task{
-    protected String description;
-    protected boolean isDone;
-
     protected String deadline;
 
     public Deadlines(String description, String deadline) {

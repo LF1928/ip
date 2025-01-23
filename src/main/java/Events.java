@@ -1,12 +1,12 @@
 public class Events extends Task{
-    protected String description;
-    protected boolean isDone;
 
-    protected String duration;
+    protected String startTime;
+    protected String endTime;
 
-    public Events(String description, String duration) {
+    public Events(String description, String startTime, String endTime) {
         super(description);
-        this.duration = duration;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     public String getTypeIcon() {
@@ -14,10 +14,10 @@ public class Events extends Task{
     }
 
     private String getStartTime() {
-        return "";
+        return this.startTime;
     }
     private String getEndTime() {
-        return "";
+        return this.endTime;
     }
 
     public String getDuration() {

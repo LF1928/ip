@@ -22,6 +22,7 @@ public class LfChat {
 
         while (true) {
             userInput = scanner.nextLine();
+            Task task = new Task(userInput);
 
             if (userInput.equalsIgnoreCase("bye")) {
                 bye();
@@ -44,11 +45,31 @@ public class LfChat {
                 markAsUndone(listOfTasks, taskNumber);
                 continue;
             }
-            Task task = new Task(userInput);
+
+            if (userInput.startsWith("todo ")) {
+                String description = userInput.substring(5);
+                task = new ToDos(description);
+            }
+
+            if (userInput.startsWith("deadline ")) {
+                String description = userInput.substring(9, userInput.indexOf("/by")).trim();
+                String deadline = userInput.substring(userInput.indexOf("/by") + 4).trim();
+                task = new Deadlines(description, deadline);
+
+            }
+            if (userInput.startsWith("event ")) {
+                String description = userInput.substring(6, userInput.indexOf("/from")).trim();
+                String startTime = userInput.substring(userInput.indexOf("/from") + 6, userInput.indexOf("/to")).trim();
+                String endTime = userInput.substring(userInput.indexOf("/to") + 4).trim();
+                task = new Events(description, startTime, endTime);
+
+            }
 
             listOfTasks.add(task);
             System.out.println("____________________________________________________________");
-            System.out.println("added: " + userInput);
+            System.out.println(" Got it. I've added this task:");
+            System.out.println("  " + task.toString());
+            System.out.println(" Now you have " + listOfTasks.size() + " tasks in the list.");
             System.out.println("____________________________________________________________");
 
         }
