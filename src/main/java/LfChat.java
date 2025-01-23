@@ -16,6 +16,8 @@ public class LfChat {
 
         Scanner scanner = new Scanner(System.in);
         String userInput;
+        String[] listOfTasks = new String[100];
+        int count = 1;
 
         while (true) {
             userInput = scanner.nextLine();
@@ -26,9 +28,23 @@ public class LfChat {
                 System.out.println("____________________________________________________________");
                 break;
             }
+
+            if (userInput.equalsIgnoreCase("list")) {
+                System.out.println("____________________________________________________________");
+                for (String task : listOfTasks) {
+                    if (task != null) {
+                        System.out.println(task);
+                    }
+                }
+                System.out.println("____________________________________________________________");
+                continue;
+            }
             System.out.println("____________________________________________________________");
-            System.out.println(userInput);
+            System.out.println("added: " + userInput);
             System.out.println("____________________________________________________________");
+            
+            listOfTasks[count-1] = count + ". " + userInput;
+            count += 1;
         }
 
         scanner.close();
