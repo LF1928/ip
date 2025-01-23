@@ -1,0 +1,11 @@
+todo read book
+deadline submit report /by Friday 5pm
+event team meeting /from 10am /to 12pm
+todo buy groceries
+list
+mark 2
+deadline finish project /by 2025-01-31
+event birthday party /from 6pm /to 9pm
+todo clean the house
+list
+bye

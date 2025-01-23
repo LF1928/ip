@@ -21,7 +21,7 @@ public class Events extends Task{
     }
 
     public String getDuration() {
-        return " (from: " + getStartTime() + " to: " + getEndTime() + ") ";
+        return " (from: " + getStartTime() + " to: " + getEndTime() + ")";
     }
 
     @Override
