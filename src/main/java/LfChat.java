@@ -50,6 +50,7 @@ public class LfChat {
                 String description = userInput.substring(5);
                 task = new ToDos(description);
                 addPrintTask(listOfTasks, task);
+                continue;
             }
 
             if (userInput.startsWith("deadline ")) {
@@ -57,20 +58,30 @@ public class LfChat {
                 String deadline = userInput.substring(userInput.indexOf("/by") + 4).trim();
                 task = new Deadlines(description, deadline);
                 addPrintTask(listOfTasks, task);
-
+                continue;
             }
+
             if (userInput.startsWith("event ")) {
                 String description = userInput.substring(6, userInput.indexOf("/from")).trim();
                 String startTime = userInput.substring(userInput.indexOf("/from") + 6, userInput.indexOf("/to")).trim();
                 String endTime = userInput.substring(userInput.indexOf("/to") + 4).trim();
                 task = new Events(description, startTime, endTime);
                 addPrintTask(listOfTasks, task);
+                continue;
             }
+
+            if (userInput.startsWith("delete ")) {
+                int taskNumber = Integer.parseInt(userInput.split(" ")[1]);
+                deleteTask(listOfTasks, taskNumber);
+                continue;
+            }
+
             else {
                 System.out.println("____________________________________________________________");
                 System.out.println(" Sorry, the command does not exist :<");
                 System.out.println("____________________________________________________________");
             }
+
 
         }
 
@@ -103,6 +114,19 @@ public class LfChat {
         System.out.println("____________________________________________________________");
         System.out.println("Nice! I've marked this task as done:");
         System.out.println("  " + listOfTasks.get(taskNumber - 1).toString());
+        System.out.println("____________________________________________________________");
+    }
+
+    public static void deleteTask(ArrayList<Task> listOfTasks, int taskNumber) {
+        if (taskNumber <= 0 || taskNumber > listOfTasks.size()) {
+            System.out.println("Invalid task number!");
+            return;
+        }
+        System.out.println("____________________________________________________________");
+        System.out.println("Noted. I've removed this task:");
+        System.out.println("  " + listOfTasks.get(taskNumber - 1).toString());
+        listOfTasks.remove(taskNumber - 1);
+        System.out.println(" Now you have " + listOfTasks.size() + " tasks in the list.");
         System.out.println("____________________________________________________________");
     }
     public static void markAsUndone(ArrayList<Task> listOfTasks, int taskNumber) {
