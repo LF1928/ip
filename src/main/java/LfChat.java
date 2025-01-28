@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -55,7 +56,7 @@ public class LfChat {
             }
 
         }
-
+        saveTasksToFile();
         scanner.close();
 
     }
@@ -144,12 +145,26 @@ public class LfChat {
             System.out.println("Invalid task number!");
             return;
         }
-
+        Task task = listOfTasks.get(taskNumber - 1);
         listOfTasks.get(taskNumber - 1).markAsDone();
 
         printLine();
         System.out.println("Nice! I've marked this task as done:");
-        System.out.println("  " + listOfTasks.get(taskNumber - 1).toString());
+        System.out.println("  " + task.toString());
+        printLine();
+    }
+
+    public static void markAsUndone(ArrayList<Task> listOfTasks, int taskNumber) {
+        if (taskNumber <= 0 || taskNumber > listOfTasks.size()) {
+            System.out.println("Invalid task number!");
+            return;
+        }
+        Task task = listOfTasks.get(taskNumber - 1);
+        listOfTasks.get(taskNumber - 1).markAsUndone();
+
+        printLine();
+        System.out.println("OK, I've marked this task as not done yet:");
+        System.out.println("  " + task.toString());
         printLine();
     }
 
@@ -158,6 +173,7 @@ public class LfChat {
             System.out.println("Invalid task number!");
             return;
         }
+
         printLine();
         System.out.println("Noted. I've removed this task:");
         System.out.println("  " + listOfTasks.get(taskNumber - 1).toString());
@@ -165,26 +181,14 @@ public class LfChat {
         System.out.println(" Now you have " + listOfTasks.size() + " tasks in the list.");
         printLine();
     }
-    public static void markAsUndone(ArrayList<Task> listOfTasks, int taskNumber) {
-        if (taskNumber <= 0 || taskNumber > listOfTasks.size()) {
-            System.out.println("Invalid task number!");
-            return;
-        }
 
-        listOfTasks.get(taskNumber - 1).markAsUndone();
-
-        printLine();
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println("  " + listOfTasks.get(taskNumber - 1).toString());
-        printLine();
-    }
 
     public static void addPrintTask(ArrayList<Task> listOfTasks, Task task) throws MissingDescriptionException {
         if (task.getDescription().isEmpty()) {
             throw new MissingDescriptionException("Description for the tasks cannot be empty.");
         }
         listOfTasks.add(task);
-        saveTaskToFile(task);
+
         printLine();
         System.out.println(" Got it. I've added this task:");
         System.out.println("  " + task.toString());
@@ -202,7 +206,7 @@ public class LfChat {
         }
     }
 
-    private static void saveTaskToFile(Task task) {
+    private static void saveTasksToFile() {
         try (FileWriter writer = new FileWriter(FILE_PATH)) {
             for (Task t : listOfTasks) {
                 writer.write(t.toFileFormat() + "\n");
@@ -228,6 +232,5 @@ public class LfChat {
             System.out.println("Error loading tasks from file: " + e.getMessage());
         }
     }
-
 
 }
