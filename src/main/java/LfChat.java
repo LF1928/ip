@@ -24,7 +24,6 @@ public class LfChat {
         System.out.println(" Hello! I'm LFChat");
         System.out.println(" What can I do for you?");
         printLine();
-        System.out.println("Working Directory: " + System.getProperty("user.dir"));
 
         Scanner scanner = new Scanner(System.in);
         String userInput;
@@ -218,8 +217,6 @@ public class LfChat {
         if (!Files.exists(path)) {
             return;
         }
-        System.out.println("Loading tasks from: " + path.toAbsolutePath());
-
         try {
             Files.lines(path).forEach(line -> {
                 Task task = Task.fromFileFormat(line);
@@ -227,7 +224,6 @@ public class LfChat {
                     listOfTasks.add(task);
                 }
             });
-            System.out.println("Tasks loaded successfully.");
         } catch (IOException e) {
             System.out.println("Error loading tasks from file: " + e.getMessage());
         }
