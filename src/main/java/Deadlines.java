@@ -1,9 +1,11 @@
+import java.time.LocalDate;
+
 public class Deadlines extends Task{
-    protected String deadline;
+    protected LocalDate deadline;
 
     public Deadlines(String description, String deadline) {
         super(description);
-        this.deadline = deadline;
+        this.deadline = DateTimeParse.parseDate(deadline);
     }
 
     public String getTypeIcon() {
@@ -11,7 +13,7 @@ public class Deadlines extends Task{
     }
 
     public String getDeadline() {
-        return " (by: " + this .deadline + ")";
+        return " (by: " + DateTimeParse.formatDate(this.deadline) + ")";
     }
 
     @Override

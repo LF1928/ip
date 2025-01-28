@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -99,7 +98,7 @@ public class LfChat {
             @Override
             void execute(String input) throws MissingDescriptionException{
                 String description = input.substring(9, input.indexOf("/by")).trim();
-                String deadline = input.substring(input.indexOf("/by") + 4).trim();
+                String deadline = DateTimeParse.extractDateTime(input);
                 Task task = new Deadlines(description, deadline);
                 addPrintTask(listOfTasks, task);
             }
@@ -108,9 +107,8 @@ public class LfChat {
             @Override
             void execute(String input) throws MissingDescriptionException{
                 String description = input.substring(6, input.indexOf("/from")).trim();
-                String startTime = input.substring(input.indexOf("/from") + 6, input.indexOf("/to")).trim();
-                String endTime = input.substring(input.indexOf("/to") + 4).trim();
-                Task task = new Events(description, startTime, endTime);
+                String[] startEndTime = DateTimeParse.extractStartAndEndTimes(input);
+                Task task = new Events(description, startEndTime);
                 addPrintTask(listOfTasks, task);
             }
         },

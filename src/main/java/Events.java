@@ -1,12 +1,22 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 public class Events extends Task{
 
-    protected String startTime;
-    protected String endTime;
+    protected LocalDateTime startTime;
+    protected LocalDateTime endTime;
+
+    public Events(String description, String[] startEndTimes) {
+        super(description);
+
+        this.startTime = DateTimeParse.parseDateTime(startEndTimes[0]);
+        this.endTime = DateTimeParse.parseDateTime(startEndTimes[1]);
+    }
 
     public Events(String description, String startTime, String endTime) {
         super(description);
-        this.startTime = startTime;
-        this.endTime = endTime;
+
+        this.startTime = DateTimeParse.parseDateTime(startTime);
+        this.endTime = DateTimeParse.parseDateTime(endTime);
     }
 
     public String getTypeIcon() {
@@ -14,10 +24,10 @@ public class Events extends Task{
     }
 
     private String getStartTime() {
-        return this.startTime;
+        return DateTimeParse.formatDateTime(this.startTime);
     }
     private String getEndTime() {
-        return this.endTime;
+        return DateTimeParse.formatDateTime(this.endTime);
     }
 
     public String getDuration() {
@@ -31,8 +41,8 @@ public class Events extends Task{
 
     @Override
     public String toFileFormat() {
-        return "E | " + (this.isDone ? "1" : "0") + " | " + this.description + " | " + this.startTime
-                + " | " + this.endTime;
+        return "E | " + (this.isDone ? "1" : "0") + " | " + this.description + " | " + getStartTime()
+                + " | " + getEndTime();
     }
 
 }
