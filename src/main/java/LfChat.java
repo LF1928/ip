@@ -1,9 +1,16 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 
 public class LfChat {
     private static ArrayList<Task> listOfTasks = new ArrayList<>();
+    private static final String FILE_PATH = "data/LFChat.txt";
 
     public static void main(String[] args) throws MissingDescriptionException {
         String logo = "  _      ______   _____ _           _\n"
@@ -17,9 +24,13 @@ public class LfChat {
         System.out.println(" Hello! I'm LFChat");
         System.out.println(" What can I do for you?");
         printLine();
+        System.out.println("Working Directory: " + System.getProperty("user.dir"));
 
         Scanner scanner = new Scanner(System.in);
         String userInput;
+        EnsureDirectoryExists();
+        loadTasksFromFile();
+
 
 
         while (true) {
@@ -174,6 +185,7 @@ public class LfChat {
             throw new MissingDescriptionException("Description for the tasks cannot be empty.");
         }
         listOfTasks.add(task);
+        saveTaskToFile(task);
         printLine();
         System.out.println(" Got it. I've added this task:");
         System.out.println("  " + task.toString());
@@ -182,6 +194,43 @@ public class LfChat {
     }
     public static void printLine() {
         System.out.println("____________________________________________________________");
+    }
+
+    private static void EnsureDirectoryExists() {
+        File dataDirectory = new File("./data");
+        if (!dataDirectory.exists()) {
+            dataDirectory.mkdirs();
+        }
+    }
+
+    private static void saveTaskToFile(Task task) {
+        try (FileWriter writer = new FileWriter(FILE_PATH)) {
+            for (Task t : listOfTasks) {
+                writer.write(t.toFileFormat() + "\n");
+            }
+        } catch (IOException e) {
+            System.out.println("Error saving tasks to file: " + e.getMessage());
+        }
+    }
+
+    private static void loadTasksFromFile() {
+        Path path = Paths.get(FILE_PATH);
+        if (!Files.exists(path)) {
+            return;
+        }
+        System.out.println("Loading tasks from: " + path.toAbsolutePath());
+
+        try {
+            Files.lines(path).forEach(line -> {
+                Task task = Task.fromFileFormat(line);
+                if (task != null) {
+                    listOfTasks.add(task);
+                }
+            });
+            System.out.println("Tasks loaded successfully.");
+        } catch (IOException e) {
+            System.out.println("Error loading tasks from file: " + e.getMessage());
+        }
     }
 
 

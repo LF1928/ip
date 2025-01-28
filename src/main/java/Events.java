@@ -28,4 +28,11 @@ public class Events extends Task{
     public String toString() {
         return "[" + this.getTypeIcon() + "]" + "[" + this.getStatusIcon() + "] " + this.description + getDuration();
     }
+
+    @Override
+    public String toFileFormat() {
+        return "E | " + (this.isDone ? "1" : "0") + " | " + this.description + " | " + this.startTime
+                + " | " + this.endTime;
+    }
+
 }
