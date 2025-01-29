@@ -1,9 +1,11 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+package duke;
+
+import duke.command.Command;
+import duke.command.Storage;
+import duke.exceptions.*;
+import duke.parsers.Parser;
+import duke.tasks.Task;
+import duke.ui.Ui;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -28,7 +30,7 @@ public class LfChat {
                 if (command == Command.BYE) {
                     break;
                 }
-            } catch (MissingDescriptionException | IllegalArgumentException |InvalidTaskNumberException e) {
+            } catch (MissingDescriptionException | IllegalArgumentException | InvalidTaskNumberException e) {
                 Ui.printLine();
                 System.out.println(e.getMessage());
                 Ui.printLine();
