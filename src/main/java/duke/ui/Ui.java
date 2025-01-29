@@ -1,4 +1,8 @@
+package duke.ui;
+
 import java.util.ArrayList;
+import duke.tasks.*;
+import duke.exceptions.*;
 
 public class Ui {
     public static void printLine() {
