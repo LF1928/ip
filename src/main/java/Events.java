@@ -5,13 +5,6 @@ public class Events extends Task{
     protected LocalDateTime startTime;
     protected LocalDateTime endTime;
 
-    public Events(String description, String[] startEndTimes) {
-        super(description);
-
-        this.startTime = DateTimeParse.parseDateTime(startEndTimes[0]);
-        this.endTime = DateTimeParse.parseDateTime(startEndTimes[1]);
-    }
-
     public Events(String description, String startTime, String endTime) {
         super(description);
 
