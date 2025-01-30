@@ -6,12 +6,14 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+
 public class DateTimeParse {
     private static final List<DateTimeFormatter> DATE_TIME_FORMATTERS = Arrays.asList(
-            DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a"),
+            DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a", Locale.ENGLISH),
             DateTimeFormatter.ofPattern("d/M/yyyy HHmm"),  // e.g., 2/12/2019 1800
             DateTimeFormatter.ofPattern("d-M-yyyy HH:mm"), // e.g., 2-12-2019 18:00
-            DateTimeFormatter.ofPattern("d/M/yyyy h:mm a") // e.g., 2/12/2019 6:00 PM
+            DateTimeFormatter.ofPattern("d/M/yyyy h:mm a", Locale.ENGLISH) // e.g., 2/12/2019 6:00 PM
     );
 
     private static final List<DateTimeFormatter> DATE_FORMATTERS = Arrays.asList(
@@ -19,18 +21,21 @@ public class DateTimeParse {
             DateTimeFormatter.ofPattern("yyyy-mm-dd")
     );
 
-    public static LocalDateTime parseDateTime(String dateTimeString) {
-            for (DateTimeFormatter formatter : DATE_TIME_FORMATTERS) {
-                try {
-                    return LocalDateTime.parse(dateTimeString, formatter);
-                } catch (DateTimeParseException e) {
-                    // Continue to the next formatter
-                }
+    public static LocalDateTime parseDateTime(String dateTimeString)  throws DateTimeParseException {
+        for (DateTimeFormatter formatter : DATE_TIME_FORMATTERS) {
+            try {
+                LocalDateTime parsedDate = LocalDateTime.parse(dateTimeString, formatter);
+                System.out.println("Parsed successfully using: " + formatter);
+                return parsedDate;
+            } catch (DateTimeParseException e) {
+                System.out.println("Failed to parse using: " + formatter);
+                // Continue to the next formatter
             }
-            return null;
+        }
+        throw new DateTimeParseException("Invalid date-time format: " + dateTimeString, dateTimeString, 0);
     }
 
-    public static LocalDate parseDate(String dateString) {
+    public static LocalDate parseDate(String dateString) throws DateTimeParseException{
         return LocalDate.parse(dateString);
     }
 
