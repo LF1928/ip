@@ -8,7 +8,7 @@ import duke.parsers.DateTimeParse;
  * Represents a task with a specific start and end date time.
  * A Event task includes a description and a start end date time.
  */
-public class Events extends Task{
+public class Events extends Task {
 
     protected LocalDateTime startTime;
     protected LocalDateTime endTime;
@@ -56,7 +56,7 @@ public class Events extends Task{
     }
 
     /**
-     * Returns the duration of the event in the format " (from: <start time> to: <end time>)".
+     * Returns the duration of the event in the format.
      *
      * @return A string representing the event's duration.
      */
@@ -77,7 +77,7 @@ public class Events extends Task{
 
     /**
      * Returns a string representation of the event task in a file-friendly format.
-     * The format is as follows: "E | <status> | <description> | <start time> | <end time>".
+     * The format is as follows: "E | {status} | {description} | {start time} | {end time}".
      *
      * @return A string representing the event task in file format.
      */

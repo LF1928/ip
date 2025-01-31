@@ -1,6 +1,7 @@
 package duke.command;
 
 import java.util.ArrayList;
+
 import duke.exceptions.InvalidTaskNumberException;
 import duke.exceptions.MissingDescriptionException;
 import duke.tasks.Task;
@@ -16,13 +17,13 @@ public class TaskList {
 
     /**
      * Checks if the given task number is valid in the context of the provided task list.
-     * A task number is considered valid if it is greater than 0 and less than or equal to the size of the task list.
      *
      * @param listOfTasks The list of tasks to check against.
      * @param taskNumber The task number to validate.
-     * @throws InvalidTaskNumberException If the task number is invalid (less than 1 or greater than the list size).
+     * @throws InvalidTaskNumberException If the task number is invalid.
      */
-    private static void checkIfTaskIsValid(ArrayList<Task> listOfTasks, int taskNumber) throws InvalidTaskNumberException {
+    private static void checkIfTaskIsValid(ArrayList<Task> listOfTasks, int taskNumber)
+            throws InvalidTaskNumberException {
         if (taskNumber <= 0 || taskNumber > listOfTasks.size()) {
             throw new InvalidTaskNumberException("Invalid task number!");
         }

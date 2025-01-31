@@ -1,14 +1,16 @@
 package duke.tasks;
 
-import org.junit.jupiter.api.Test;
-import java.time.format.DateTimeParseException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
+import org.junit.jupiter.api.Test;
 
 public class DeadlineTest {
     @Test
-    public void testDeadlinesConstructorWithInvalidDate(){
+    public void testDeadlinesConstructor_invalidDate_exceptionThrown() {
         String description = "Invalid date task";
         String invalidDeadlineString = "invalid-date";
 
@@ -18,7 +20,7 @@ public class DeadlineTest {
     }
 
     @Test
-    public void testDeadlinesConstructor() {
+    public void testDeadlinesConstructor_expectedBehavior() {
         String description = "Submit report";
         String deadlineString = "2023-12-31";
         LocalDate expectedDeadline = LocalDate.of(2023, 12, 31);

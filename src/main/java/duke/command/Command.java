@@ -11,6 +11,10 @@ import duke.tasks.Task;
 import duke.tasks.ToDos;
 import duke.ui.Ui;
 
+/**
+ * Represents the different commands that can be executed in the Duke application.
+ * Each command corresponds to a specific action that modifies or interacts with the task list.
+ */
 public enum Command {
     BYE {
         @Override
@@ -77,7 +81,6 @@ public enum Command {
     },
 
     FIND {
-
         @Override
         public void execute(String input, ArrayList<Task> listOfTasks) {
             String keyword = Parser.extractKeyword(input);

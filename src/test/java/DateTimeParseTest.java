@@ -1,15 +1,18 @@
 package duke.parsers;
 
-import org.junit.jupiter.api.Test;
-import duke.parsers.DateTimeParse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
-import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
 
 public class DateTimeParseTest {
 
     @Test
-    public void testParseDateTime_ValidFormats() {
+    public void testParseDateTime_validFormats_expectedBehavior() {
         assertEquals(LocalDateTime.of(2023, 12, 31, 14, 30),
                 DateTimeParse.parseDateTime("Dec 31 2023, 2:30 PM"));
 
@@ -24,7 +27,7 @@ public class DateTimeParseTest {
     }
 
     @Test
-    public void testParseDateTime_InvalidFormat() {
+    public void testParseDateTime_invalidFormat_expectedBehavior() {
         // Test invalid date-time format
         DateTimeParseException exception = assertThrows(DateTimeParseException.class, () -> {
             DateTimeParse.parseDateTime("Invalid Date Format");
@@ -33,7 +36,7 @@ public class DateTimeParseTest {
     }
 
     @Test
-    public void testParseDateTime_EmptyInput() {
+    public void testParseDateTime_emptyInput_expectedBehavior() {
         DateTimeParseException exception = assertThrows(DateTimeParseException.class, () -> {
             DateTimeParse.parseDateTime("");
         });
@@ -41,7 +44,7 @@ public class DateTimeParseTest {
     }
 
     @Test
-    public void testParseDateTime_PartialMatch() {
+    public void testParseDateTime_partialMatch_expectedBehavior() {
         DateTimeParseException exception = assertThrows(DateTimeParseException.class, () -> {
             DateTimeParse.parseDateTime("Dec 31 2023, 14:30"); // Invalid time format
         });

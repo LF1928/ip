@@ -1,15 +1,21 @@
 package duke;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import duke.command.Command;
 import duke.command.Storage;
-import duke.exceptions.*;
+import duke.exceptions.InvalidTaskNumberException;
+import duke.exceptions.MissingDescriptionException;
 import duke.parsers.Parser;
 import duke.tasks.Task;
 import duke.ui.Ui;
-import java.util.Scanner;
-import java.util.ArrayList;
 
-
+/**
+ * The LfChat class represents the main application logic for a task management chatbot.
+ * It initializes the user interface, loads tasks from storage, processes user commands,
+ * and saves tasks before exiting.
+ */
 public class LfChat {
     private static ArrayList<Task> listOfTasks = new ArrayList<>();
 
@@ -17,7 +23,7 @@ public class LfChat {
         Ui.start();
         Scanner scanner = new Scanner(System.in);
         String userInput;
-        Storage.EnsureDirectoryExists();
+        Storage.ensureDirectoryExists();
         Storage.loadTasksFromFile(listOfTasks);
 
 

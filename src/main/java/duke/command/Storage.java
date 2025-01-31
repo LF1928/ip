@@ -1,7 +1,5 @@
 package duke.command;
 
-import duke.tasks.Task;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,13 +8,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+import duke.tasks.Task;
+
+
+
 /**
  * The {@code Storage} class handles the saving and loading of task data to and from a file.
  * It ensures that the appropriate directory exists and provides methods for saving tasks
  * to a file and loading tasks from a file.
  * The file used for storage is located at "data/LFChat.txt".
- *
- * <p>Methods in this class handle file-related operations and manage task data serialization and deserialization.
+ * Methods in this class handle file-related operations and manage task data serialization and deserialization.
  */
 public class Storage {
 
@@ -27,7 +28,7 @@ public class Storage {
      * Ensures that the directory for storing task files exists.
      * If the directory does not exist, it is created.
      */
-    public static void EnsureDirectoryExists() {
+    public static void ensureDirectoryExists() {
         File dataDirectory = new File("./data");
         if (!dataDirectory.exists()) {
             dataDirectory.mkdirs();

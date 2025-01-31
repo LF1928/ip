@@ -17,9 +17,9 @@ import java.util.Locale;
 public class DateTimeParse {
     private static final List<DateTimeFormatter> DATE_TIME_FORMATTERS = Arrays.asList(
             DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a", Locale.ENGLISH),
-            DateTimeFormatter.ofPattern("d/M/yyyy HHmm"),  // e.g., 2/12/2019 1800
-            DateTimeFormatter.ofPattern("d-M-yyyy HH:mm"), // e.g., 2-12-2019 18:00
-            DateTimeFormatter.ofPattern("d/M/yyyy h:mm a", Locale.ENGLISH) // e.g., 2/12/2019 6:00 PM
+            DateTimeFormatter.ofPattern("d/M/yyyy HHmm"),
+            DateTimeFormatter.ofPattern("d-M-yyyy HH:mm"),
+            DateTimeFormatter.ofPattern("d/M/yyyy h:mm a", Locale.ENGLISH)
     );
 
     /**
@@ -47,7 +47,7 @@ public class DateTimeParse {
      * @return The parsed {@link LocalDate} object.
      * @throws DateTimeParseException If the date string does not match the default format.
      */
-    public static LocalDate parseDate(String dateString) throws DateTimeParseException{
+    public static LocalDate parseDate(String dateString) throws DateTimeParseException {
         return LocalDate.parse(dateString);
     }
 

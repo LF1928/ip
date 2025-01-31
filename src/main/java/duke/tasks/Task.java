@@ -72,7 +72,7 @@ public abstract class Task {
 
     /**
      * Parses a task from a given file format string.
-     * The format follows: "{Task Type} | {1 for done, 0 for not done} | {Description} | {Additional Data (if applicable)}".
+     * The format follows: "{Task Type} | {isDone} | {Description} | {Additional Data (if applicable)}".
      *
      * @param line The string representing a task in file format.
      * @return A Task object created from the string, or null if the format is invalid.
@@ -88,25 +88,35 @@ public abstract class Task {
         String description = parts[2];
 
         switch (type) {
-            case "T":
-                ToDos todo = new ToDos(description);
-                if (isDone) todo.markAsDone();
-                return todo;
-            case "D":
-                if (parts.length < 4) return null;
-                String deadline = parts[3];
-                Deadlines deadlineTask = new Deadlines(description, deadline);
-                if (isDone) deadlineTask.markAsDone();
-                return deadlineTask;
-            case "E":
-                if (parts.length < 5) return null;
-                String startTime = parts[3];
-                String endTime = parts[4];
-                Events event = new Events(description, startTime, endTime);
-                if (isDone) event.markAsDone();
-                return event;
-            default:
-                return null; // Unknown task type
+        case "T":
+            ToDos todo = new ToDos(description);
+            if (isDone) {
+                todo.markAsDone();
+            }
+            return todo;
+        case "D":
+            if (parts.length < 4) {
+                return null;
+            }
+            String deadline = parts[3];
+            Deadlines deadlineTask = new Deadlines(description, deadline);
+            if (isDone) {
+                deadlineTask.markAsDone();
+            }
+            return deadlineTask;
+        case "E":
+            if (parts.length < 5) {
+                return null;
+            }
+            String startTime = parts[3];
+            String endTime = parts[4];
+            Events event = new Events(description, startTime, endTime);
+            if (isDone) {
+                event.markAsDone();
+            }
+            return event;
+        default:
+            return null; // Unknown task type
         }
     }
 

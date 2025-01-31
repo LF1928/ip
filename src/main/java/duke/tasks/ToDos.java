@@ -3,7 +3,7 @@ package duke.tasks;
  * Represents a To-Do task in the task management system.
  * A To-Do task is a simple task that only has a description and completion status.
  */
-public class ToDos extends Task{
+public class ToDos extends Task {
 
     /**
      * Constructs a ToDos task with the given description.

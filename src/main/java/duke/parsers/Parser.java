@@ -46,7 +46,7 @@ public class Parser {
             throw new InvalidTaskNumberException("Invalid task number!");
         }
     }
-    
+
     /**
      * Extracts the keyword to find from the user input.
      *
