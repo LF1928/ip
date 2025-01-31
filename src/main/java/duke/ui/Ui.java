@@ -74,4 +74,17 @@ public class Ui {
         }
         printLine();
     }
+
+    public static void findTasks(String keyword, ArrayList<Task> listOfTasks) {
+        int count = 1;
+        printLine();
+        System.out.println(" Here are the matching tasks in your list:");
+        for (Task task : listOfTasks) {
+            if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
+                System.out.println(count + "." + task);
+                count += 1;
+            }
+        }
+        printLine();
+    }
 }

@@ -46,6 +46,16 @@ public class Parser {
             throw new InvalidTaskNumberException("Invalid task number!");
         }
     }
+    
+    /**
+     * Extracts the keyword to find from the user input.
+     *
+     * @param userInput The full user input provided by the user.
+     * @return The keyword to find.
+     */
+    public static String extractKeyword(String userInput) {
+        return userInput.substring(5).trim();
+    }
 
     /**
      * Extracts the description of a todo task from the user input.
