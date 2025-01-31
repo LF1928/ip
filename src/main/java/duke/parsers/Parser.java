@@ -1,7 +1,8 @@
 package duke.parsers;
 
 import duke.command.Command;
-import duke.exceptions.*;
+import duke.exceptions.InvalidTaskNumberException;
+import duke.exceptions.MissingDescriptionException;
 
 /**
  * The {@code Parser} class is responsible for parsing user input commands and extracting relevant details

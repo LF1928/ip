@@ -1,8 +1,9 @@
 package duke.command;
 
 import java.util.ArrayList;
-import duke.exceptions.*;
-import duke.tasks.*;
+import duke.exceptions.InvalidTaskNumberException;
+import duke.exceptions.MissingDescriptionException;
+import duke.tasks.Task;
 
 /**
  * The {@code TaskList} class manages a list of tasks. It provides methods for adding tasks,

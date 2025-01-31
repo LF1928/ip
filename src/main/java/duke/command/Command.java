@@ -1,9 +1,14 @@
 package duke.command;
 
 import java.util.ArrayList;
-import duke.exceptions.*;
+
+import duke.exceptions.InvalidTaskNumberException;
+import duke.exceptions.MissingDescriptionException;
 import duke.parsers.Parser;
-import duke.tasks.*;
+import duke.tasks.Deadlines;
+import duke.tasks.Events;
+import duke.tasks.Task;
+import duke.tasks.ToDos;
 import duke.ui.Ui;
 
 public enum Command {
@@ -71,5 +76,6 @@ public enum Command {
         }
     };
 
-    public abstract void execute(String input, ArrayList<Task> listOfTasks) throws MissingDescriptionException, InvalidTaskNumberException;
+    public abstract void execute(String input, ArrayList<Task> listOfTasks)
+            throws MissingDescriptionException, InvalidTaskNumberException;
 }

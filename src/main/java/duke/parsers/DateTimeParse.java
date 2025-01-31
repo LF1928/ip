@@ -22,11 +22,6 @@ public class DateTimeParse {
             DateTimeFormatter.ofPattern("d/M/yyyy h:mm a", Locale.ENGLISH) // e.g., 2/12/2019 6:00 PM
     );
 
-    private static final List<DateTimeFormatter> DATE_FORMATTERS = Arrays.asList(
-            DateTimeFormatter.ofPattern("MMM d yyyy"),
-            DateTimeFormatter.ofPattern("yyyy-mm-dd")
-    );
-
     /**
      * Parses a date-time string into a {@link LocalDateTime} object using the supported formats.
      *
