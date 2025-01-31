@@ -25,6 +25,10 @@ public class Parser {
         }
     }
 
+    public static String extractKeyword(String userInput) {
+        return userInput.substring(5).trim();
+    }
+
     public static String extractTodoDescription(String userInput) throws MissingDescriptionException {
         if (userInput.length() <= 5) {
             throw new MissingDescriptionException("The description of a todo cannot be empty.");

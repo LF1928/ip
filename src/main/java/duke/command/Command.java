@@ -69,6 +69,15 @@ public enum Command {
             Ui.deleteTaskPrint(listOfTasks, taskNumber);
             TaskList.deleteTask(listOfTasks, taskNumber);
         }
+    },
+
+    FIND {
+
+        @Override
+        public void execute(String input, ArrayList<Task> listOfTasks) {
+            String keyword = Parser.extractKeyword(input);
+            Ui.findTasks(keyword, listOfTasks);
+        }
     };
 
     public abstract void execute(String input, ArrayList<Task> listOfTasks) throws MissingDescriptionException, InvalidTaskNumberException;
