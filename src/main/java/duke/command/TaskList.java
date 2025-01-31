@@ -1,8 +1,9 @@
 package duke.command;
 
 import java.util.ArrayList;
-import duke.exceptions.*;
-import duke.tasks.*;
+import duke.exceptions.InvalidTaskNumberException;
+import duke.exceptions.MissingDescriptionException;
+import duke.tasks.Task;
 
 public class TaskList {
     private static void checkIfTaskIsValid(ArrayList<Task> listOfTasks, int taskNumber) throws InvalidTaskNumberException{

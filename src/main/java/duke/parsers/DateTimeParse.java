@@ -15,12 +15,7 @@ public class DateTimeParse {
             DateTimeFormatter.ofPattern("d-M-yyyy HH:mm"), // e.g., 2-12-2019 18:00
             DateTimeFormatter.ofPattern("d/M/yyyy h:mm a", Locale.ENGLISH) // e.g., 2/12/2019 6:00 PM
     );
-
-    private static final List<DateTimeFormatter> DATE_FORMATTERS = Arrays.asList(
-            DateTimeFormatter.ofPattern("MMM d yyyy"),
-            DateTimeFormatter.ofPattern("yyyy-mm-dd")
-    );
-
+    
     public static LocalDateTime parseDateTime(String dateTimeString)  throws DateTimeParseException {
         for (DateTimeFormatter formatter : DATE_TIME_FORMATTERS) {
             try {
