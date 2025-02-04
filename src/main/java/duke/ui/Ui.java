@@ -20,9 +20,8 @@ public class Ui {
                 + " | |    |  __|   | |    | '_ \\ / _` |\n"
                 + " | |____| |      | |___ | | | | (_| |_\n"
                 + " |______|_|      |_____||_| |_|\\__,_(_)\n";
-        return "Hello from\n" + logo
-                + " Hello! I'm LFChat\n"
-                + " What can I do for you?\n";
+        return "Hello! I'm LFChat\n"
+                + "What can I do for you?\n";
     }
 
     /**
@@ -53,7 +52,7 @@ public class Ui {
      * Prints a message when a task is deleted.
      *
      * @param listOfTasks The list of tasks.
-     * @param taskNumber The index of the task that was deleted.
+     * @param taskToDelete The task that was deleted.
      */
     public static String deleteTaskPrint(ArrayList<Task> listOfTasks, Task taskToDelete) {
         return " Noted. I've removed this task:\n"

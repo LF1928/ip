@@ -9,19 +9,21 @@ import duke.tasks.Task;
 import duke.ui.Ui;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.geometry.Insets;
 import javafx.scene.paint.Color;
+import javafx.util.Callback;
 
 import java.util.ArrayList;
 
 public class Main extends Application {
-    private TextArea chatHistory;
+    private ListView<Message> chatHistory;
     private TextField userInputField;
     private static ArrayList<Task> listOfTasks = new ArrayList<>();
 
@@ -32,11 +34,39 @@ public class Main extends Application {
         userInputField.setPrefWidth(300);
 
         //ChatHistory
-        chatHistory = new TextArea();
-        chatHistory.setEditable(false);
-        chatHistory.setWrapText(true);
-        chatHistory.setStyle("-fx-font-family: monospace; -fx-font-size: 14;");
-        chatHistory.appendText(Ui.start());
+        chatHistory = new ListView<>();
+        chatHistory.setCellFactory(new Callback<ListView<Message>, ListCell<Message>>() {
+            @Override
+            public ListCell<Message> call(ListView<Message> param) {
+                return new ListCell<Message>() {
+                    @Override
+                    protected void updateItem(Message item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty || item == null) {
+                            setGraphic(null);
+                        } else {
+                            TextFlow textFlow = new TextFlow();
+                            Text text = new Text(item.getContent());
+                            text.setStyle("-fx-font-family: monospace; -fx-font-size: 14;");
+
+                            textFlow.getChildren().add(text);
+                            textFlow.setMaxWidth(200); // Set max width for messages
+                            textFlow.setPadding(new Insets(5));
+
+                            if (item.isUserMessage()) {
+                                textFlow.setStyle("-fx-background-color: lightblue; -fx-background-radius: 10;");
+                                setAlignment(Pos.CENTER_RIGHT);
+                            } else {
+                                textFlow.setStyle("-fx-background-color: lightgreen; -fx-background-radius: 10;");
+                                setAlignment(Pos.CENTER_LEFT);
+                            }
+
+                            setGraphic(textFlow);
+                        }
+                    }
+                };
+            }
+        });
 
         //Enter button
         Button enterButton = new Button("Enter");
@@ -62,6 +92,8 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
+        chatHistory.getItems().add(new Message(Ui.start(), false));
+
         Storage.ensureDirectoryExists();
         Storage.loadTasksFromFile(listOfTasks);
     }
@@ -78,7 +110,7 @@ public class Main extends Application {
 
             return response;
         } catch (MissingDescriptionException | IllegalArgumentException | InvalidTaskNumberException e) {
-            return "ChatBot: " + e.getMessage();
+            return e.getMessage();
         }
     }
 
@@ -86,12 +118,12 @@ public class Main extends Application {
         String input = userInputField.getText().trim();
         if (!input.isEmpty()) {
             // Display user input in the chat history
-            chatHistory.appendText("You: " + input + "\n");
+            chatHistory.getItems().add(new Message("You: " + input, true));
             userInputField.clear();
 
             // Process user input and get reply
             String reply = processUserInput(input);
-            chatHistory.appendText("ChatBot: " + reply + "\n");
+            chatHistory.getItems().add(new Message("LFChat: " + reply, false));
         }
     }
 }
