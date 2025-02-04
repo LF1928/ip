@@ -10,6 +10,10 @@ import duke.exceptions.MissingDescriptionException;
 import duke.parsers.Parser;
 import duke.tasks.Task;
 import duke.ui.Ui;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 /**
  * The LfChat class represents the main application logic for a task management chatbot.
@@ -19,7 +23,7 @@ import duke.ui.Ui;
 public class LfChat {
     private static ArrayList<Task> listOfTasks = new ArrayList<>();
 
-    public static void main(String[] args) {
+    public static void LFChat(String[] args) {
         Ui.start();
         Scanner scanner = new Scanner(System.in);
         String userInput;
@@ -37,9 +41,7 @@ public class LfChat {
                     break;
                 }
             } catch (MissingDescriptionException | IllegalArgumentException | InvalidTaskNumberException e) {
-                Ui.printLine();
                 System.out.println(e.getMessage());
-                Ui.printLine();
             }
         }
         Storage.saveTasksToFile(listOfTasks);
