@@ -35,21 +35,12 @@ public class DialogBox extends HBox {
         }
     }
 
-
-//    public DialogBox(String s) {
-//        text = new Label(s);
-//
-//        text.setWrapText(true);
-//        this.setAlignment(Pos.TOP_RIGHT);
-//
-//        this.getChildren().addAll(text);
-//    }
-
     private void flip() {
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
+        dialog.getStyleClass().add("reply-label");
     }
 
     public static DialogBox getUserDialog(String s) {

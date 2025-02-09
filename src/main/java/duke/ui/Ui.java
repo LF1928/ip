@@ -55,7 +55,7 @@ public class Ui {
         return " Poof! \n"
                 + "  " + taskToDelete + "\n"
                 + " is gone! Like a soft cloud drifting away~ \n"
-                + " Now you have only" + (listOfTasks.size()) + " tasks in the list!\n";
+                + " Now you have only " + (listOfTasks.size()) + " tasks in the list!\n";
     }
 
     /**
