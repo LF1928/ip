@@ -14,7 +14,7 @@ import java.util.Locale;
  * date-time strings from commands, parse them into {@link LocalDateTime} or {@link LocalDate},
  * and format them into user-friendly strings.
  */
-public class DateTimeParse {
+public class DateTimeParser {
     private static final List<DateTimeFormatter> DATE_TIME_FORMATTERS = Arrays.asList(
             DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a", Locale.ENGLISH),
             DateTimeFormatter.ofPattern("d/M/yyyy HHmm"),

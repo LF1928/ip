@@ -3,7 +3,7 @@ package duke.tasks;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
-import duke.parsers.DateTimeParse;
+import duke.parsers.DateTimeParser;
 /**
  * Represents a task with a specific start and end date time.
  * A Event task includes a description and a start end date time.
@@ -24,8 +24,8 @@ public class Events extends Task {
     public Events(String description, String startTime, String endTime) throws DateTimeParseException {
         super(description);
 
-        this.startTime = DateTimeParse.parseDateTime(startTime);
-        this.endTime = DateTimeParse.parseDateTime(endTime);
+        this.startTime = DateTimeParser.parseDateTime(startTime);
+        this.endTime = DateTimeParser.parseDateTime(endTime);
     }
 
     /**
@@ -43,7 +43,7 @@ public class Events extends Task {
      * @return A string representing the formatted start time of the event.
      */
     private String getStartTime() {
-        return DateTimeParse.formatDateTime(this.startTime);
+        return DateTimeParser.formatDateTime(this.startTime);
     }
 
     /**
@@ -52,7 +52,7 @@ public class Events extends Task {
      * @return A string representing the formatted end time of the event.
      */
     private String getEndTime() {
-        return DateTimeParse.formatDateTime(this.endTime);
+        return DateTimeParser.formatDateTime(this.endTime);
     }
 
     /**

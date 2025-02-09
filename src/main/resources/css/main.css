@@ -1,0 +1,48 @@
+.root {
+    main-color: rgb(176, 224, 230);  /* Light blue shade */
+    -fx-background-color: main-color;
+}
+
+.text-field {
+    -fx-background-color: #add8e6;  /* Light blue background */
+    -fx-font: 20px "Arial";
+    -fx-border-width: 2px;
+    -fx-border-color: #0000FF;
+}
+
+.button {
+    -fx-background-color: deepskyblue;  /* Blue background for the button */
+    -fx-font: italic bold 16px "Arial";
+}
+
+.button:hover {
+    -fx-background-color: lightskyblue;  /* Lighter blue on hover */
+    -fx-font-size: 18px;
+}
+
+.button:pressed {
+    -fx-background-color: royalblue;  /* Darker blue when pressed */
+    -fx-font-size: 20px;
+}
+
+.scroll-pane,
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar {
+    -fx-font-size: 10px;  /* Change width of scroll bar */
+    -fx-background-color: main-color;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: skyblue;  /* Blue tint for the thumb */
+    -fx-background-radius: 1em;
+}
+
+/* Hides the increment and decrement buttons */
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-pref-height: 0;
+    -fx-opacity: 0;
+}

@@ -3,7 +3,7 @@ package duke.tasks;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-import duke.parsers.DateTimeParse;
+import duke.parsers.DateTimeParser;
 
 /**
  * Represents a task with a specific deadline.
@@ -21,7 +21,7 @@ public class Deadlines extends Task {
      */
     public Deadlines(String description, String deadline) throws DateTimeParseException {
         super(description);
-        this.deadline = DateTimeParse.parseDate(deadline);
+        this.deadline = DateTimeParser.parseDate(deadline);
     }
 
     /**
@@ -48,7 +48,7 @@ public class Deadlines extends Task {
      * @return A formatted string displaying the deadline.
      */
     public String deadlineFormat() {
-        return " (by: " + DateTimeParse.formatDate(this.deadline) + ")";
+        return " (by: " + DateTimeParser.formatDate(this.deadline) + ")";
     }
 
     /**
