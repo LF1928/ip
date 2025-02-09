@@ -11,7 +11,7 @@ import duke.tasks.Task;
 import javafx.application.Platform;
 
 public class Cinnamonroll {
-    private static ArrayList<Task> listOfTasks = new ArrayList<>();
+    private ArrayList<Task> listOfTasks = new ArrayList<>();
 
     public Cinnamonroll() {
         Storage.ensureDirectoryExists();

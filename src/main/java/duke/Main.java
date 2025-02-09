@@ -1,5 +1,8 @@
 package duke;
 
+
+import duke.ui.Ui;
+
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +29,9 @@ public class Main extends Application {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.getChildren().add(
+                DialogBox.getCinnamonDialog(Ui.start(), chatbotImage)
+        );
     }
     public void setChatbot(Cinnamonroll c) {
         cinnamonroll = c;
