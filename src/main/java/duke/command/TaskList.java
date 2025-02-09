@@ -78,4 +78,13 @@ public class TaskList {
         }
         listOfTasks.add(task);
     }
+
+    public static Task updateTaskDescription(ArrayList<Task> listOfTasks, int taskNumber, String newTaskDescription)
+            throws MissingDescriptionException {
+        Task task = listOfTasks.get(taskNumber - 1);
+        task.updateDescription(newTaskDescription);
+        return task;
+    }
+
+
 }

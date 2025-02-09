@@ -87,6 +87,17 @@ public enum Command {
             String keyword = Parser.extractKeyword(input);
             return Ui.findTasks(keyword, listOfTasks);
         }
+    },
+
+    UPDATE {
+        @Override
+        public String execute(String input, ArrayList<Task> listOfTasks) throws InvalidTaskNumberException, MissingDescriptionException {
+            int taskNumber = Parser.extractTaskNumber(input);
+            String oldDescription = listOfTasks.get(taskNumber - 1).getDescription();
+            String newTaskDescription = Parser.extractNewTaskDescription(input);
+            Task updatedTask = TaskList.updateTaskDescription(listOfTasks, taskNumber, newTaskDescription);
+            return Ui.updateTaskDescriptionPrint(updatedTask, oldDescription);
+        }
     };
 
     public abstract String execute(String input, ArrayList<Task> listOfTasks)
