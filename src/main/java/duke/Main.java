@@ -1,6 +1,8 @@
 package duke;
 
+
 import duke.ui.Ui;
+
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +23,7 @@ public class Main extends Application {
     @FXML
     private TextField userInputField;
     private Cinnamonroll cinnamonroll = new Cinnamonroll();;
-    private Image chatbotImage = new Image(Objects.requireNonNull(this.getClass()
+    private final Image chatbotImage = new Image(Objects.requireNonNull(this.getClass()
             .getResourceAsStream("/images/cinnamonroll.jpg")));
 
     @FXML
