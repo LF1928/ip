@@ -105,11 +105,11 @@ public class Parser {
     }
 
     /**
-     * Extracts the task number from the user input.
+     * Extracts the new task description from the user input.
      *
      * @param userInput The full user input provided by the user.
-     * @return The task number extracted from the input.
-     * @throws InvalidTaskNumberException If the task number is invalid or cannot be parsed.
+     * @return The new task description from the input.
+     * @throws MissingDescriptionException If the description is missing or incorrectly formatted.
      */
     public static String extractNewTaskDescription(String userInput) throws MissingDescriptionException {
         //format: update {taskNumber} {newTaskDescription}

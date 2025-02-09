@@ -98,6 +98,16 @@ public enum Command {
             Task updatedTask = TaskList.updateTaskDescription(listOfTasks, taskNumber, newTaskDescription);
             return Ui.updateTaskDescriptionPrint(updatedTask, oldDescription);
         }
+    },
+
+    CLONE {
+        @Override
+        public String execute(String input, ArrayList<Task> listOfTasks) throws InvalidTaskNumberException {
+            int taskNumber = Parser.extractTaskNumber(input);
+            TaskList.cloneTask(listOfTasks, taskNumber);
+            Task task = listOfTasks.get(taskNumber - 1);
+            return Ui.cloneTaskPrint(task);
+        }
     };
 
     public abstract String execute(String input, ArrayList<Task> listOfTasks)
