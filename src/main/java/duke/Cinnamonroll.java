@@ -18,6 +18,7 @@ public class Cinnamonroll {
     public Cinnamonroll() {
         Storage.ensureDirectoryExists();
         Storage.loadTasksFromFile(listOfTasks);
+        assert listOfTasks != null : "listOfTasks should still not be null after loading";
     }
     public String processUserInput(String input) {
         try {
@@ -25,6 +26,7 @@ public class Cinnamonroll {
             String response = command.execute(input, listOfTasks);
 
             Storage.saveTasksToFile(listOfTasks);
+            assert listOfTasks != null : "listOfTasks should not be null after saving";
 
             if (command == Command.BYE) {
                 Platform.exit();
