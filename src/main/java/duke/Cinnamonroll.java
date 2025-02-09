@@ -1,7 +1,6 @@
 package duke;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import duke.command.Command;
 import duke.command.Storage;
@@ -9,7 +8,6 @@ import duke.exceptions.InvalidTaskNumberException;
 import duke.exceptions.MissingDescriptionException;
 import duke.parsers.Parser;
 import duke.tasks.Task;
-import duke.ui.Ui;
 import javafx.application.Platform;
 
 public class Cinnamonroll {
