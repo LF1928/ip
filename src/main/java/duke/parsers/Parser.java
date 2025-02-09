@@ -83,7 +83,7 @@ public class Parser {
             throw new MissingDescriptionException("The deadline of a deadline task cannot be empty.");
         }
         String description = userInput.substring(9, userInput.indexOf("/by")).trim();
-        String deadline = DateTimeParse.extractDateTime(userInput);
+        String deadline = DateTimeParser.extractDateTime(userInput);
         return new String[]{description, deadline};
     }
 
@@ -100,7 +100,7 @@ public class Parser {
             throw new MissingDescriptionException("The start and end times of an event cannot be empty.");
         }
         String description = userInput.substring(6, userInput.indexOf("/from")).trim();
-        String[] startEndTime = DateTimeParse.extractStartAndEndTimes(userInput);
+        String[] startEndTime = DateTimeParser.extractStartAndEndTimes(userInput);
         return new String[]{description, startEndTime[0], startEndTime[1]};
     }
 }

@@ -14,14 +14,10 @@ public class Ui {
      * Returns the welcome message and application logo at startup.
      */
     public static String start() {
-        String logo = "  _      ______   _____ _           _\n"
-                + " | |    |  ____| |  __ || |         | |\n"
-                + " | |    | |__    | |    | |__   __| |\n"
-                + " | |    |  __|   | |    | '_ \\ / _` |\n"
-                + " | |____| |      | |___ | | | | (_| |_\n"
-                + " |______|_|      |_____||_| |_|\\__,_(_)\n";
-        return "Hello! I'm LFChat\n"
-                + "What can I do for you?\n";
+        return "Hellu, sunshine! \n"
+                + "Welcome to your fluffy task manager! \n"
+                + "Let's tackle your to-dos one cozy step at a time~ \n"
+                + "What's on your mind today?";
     }
 
     /**
@@ -32,8 +28,8 @@ public class Ui {
      */
     public static String markAsDonePrint(ArrayList<Task> listOfTasks, int taskNumber) {
         Task task = listOfTasks.get(taskNumber - 1);
-        return " Nice! I've marked this task as done:\n"
-                + "  " + task + "\n";
+        return " Yaaay! You did it!\n"
+                + "  " + task + " is all done and dusted! You're amazing!";
     }
 
     /**
@@ -44,8 +40,9 @@ public class Ui {
      */
     public static String markAsUndonePrint(ArrayList<Task> listOfTasks, int taskNumber) {
         Task task = listOfTasks.get(taskNumber - 1);
-        return " OK, I've marked this task as not done yet:\n"
-                + "  " + task + "\n";
+        return " Oopsie-daisy!\n"
+                + "  " + task + "\n "
+                + " is back on the to-do list! No worries, You've got this at your own pace! \uD83C\uDF1F";
     }
 
     /**
@@ -55,9 +52,10 @@ public class Ui {
      * @param taskToDelete The task that was deleted.
      */
     public static String deleteTaskPrint(ArrayList<Task> listOfTasks, Task taskToDelete) {
-        return " Noted. I've removed this task:\n"
+        return " Poof! \n"
                 + "  " + taskToDelete + "\n"
-                + " Now you have " + (listOfTasks.size()) + " tasks in the list.\n";
+                + " is gone! Like a soft cloud drifting away~ \n"
+                + " Now you have only" + (listOfTasks.size()) + " tasks in the list!\n";
     }
 
     /**
@@ -71,9 +69,10 @@ public class Ui {
         if (task.getDescription().isEmpty()) {
             throw new MissingDescriptionException("Description for the tasks cannot be empty.");
         }
-        return " Got it. I've added this task:\n"
+        return " \"Ooooh, a new task!\n"
                 + "  " + task + "\n"
-                + " Now you have " + listOfTasks.size() + " tasks in the list.\n";
+                + " has been added! You got this, sweet bun!\n"
+                + " Now you have " + listOfTasks.size() + " tasks in the list!\n";
     }
 
     /**
@@ -89,10 +88,11 @@ public class Ui {
      * @param listOfTasks The list of tasks to be displayed.
      */
     public static String listTasks(ArrayList<Task> listOfTasks) {
-        StringBuilder tasksList = new StringBuilder(" Here are the tasks in your list:\n");
+        StringBuilder tasksList = new StringBuilder(" Here's your to-do list, sweet pea! \uD83C\uDF38 \n");
         for (int i = 0; i < listOfTasks.size(); i++) {
             tasksList.append(" ").append(i + 1).append(".").append(listOfTasks.get(i).toString()).append("\n");
         }
+        tasksList.append("Keep going, you're doing great! \uD83C\uDF6A\uD83D\uDCAA");
         return tasksList.toString();
     }
 

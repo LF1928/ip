@@ -9,9 +9,13 @@ import duke.tasks.Task;
 import duke.ui.Ui;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -21,78 +25,84 @@ import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Main extends Application {
-    private ListView<Message> chatHistory;
+    @FXML
+    private ScrollPane scrollPane;
+    @FXML
+    private VBox dialogContainer;
+    @FXML
     private TextField userInputField;
+    @FXML
+    private Button enterButton;
     private static ArrayList<Task> listOfTasks = new ArrayList<>();
+    private Scene scene;
+    private Image chatbotImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/cinnamonroll.jpg")));
 
     public void start(Stage primaryStage) {
+
+        scrollPane = new ScrollPane();
+        scrollPane.setPrefSize(385, 535);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        scrollPane.setVvalue(1.0);
+        scrollPane.setFitToWidth(true);
+
+
+        dialogContainer = new VBox();
+        dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
+
+        scrollPane.setContent(dialogContainer);
+
         //Input field
         userInputField = new TextField();
         userInputField.setPromptText("User Input");
-        userInputField.setPrefWidth(300);
-
-        //ChatHistory
-        chatHistory = new ListView<>();
-        chatHistory.setCellFactory(new Callback<ListView<Message>, ListCell<Message>>() {
-            @Override
-            public ListCell<Message> call(ListView<Message> param) {
-                return new ListCell<Message>() {
-                    @Override
-                    protected void updateItem(Message item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty || item == null) {
-                            setGraphic(null);
-                        } else {
-                            TextFlow textFlow = new TextFlow();
-                            Text text = new Text(item.getContent());
-                            text.setStyle("-fx-font-family: monospace; -fx-font-size: 14;");
-
-                            textFlow.getChildren().add(text);
-                            textFlow.setMaxWidth(200); // Set max width for messages
-                            textFlow.setPadding(new Insets(5));
-
-                            if (item.isUserMessage()) {
-                                textFlow.setStyle("-fx-background-color: lightblue; -fx-background-radius: 10;");
-                                setAlignment(Pos.CENTER_RIGHT);
-                            } else {
-                                textFlow.setStyle("-fx-background-color: lightgreen; -fx-background-radius: 10;");
-                                setAlignment(Pos.CENTER_LEFT);
-                            }
-
-                            setGraphic(textFlow);
-                        }
-                    }
-                };
-            }
-        });
+        userInputField.setPrefWidth(325);
 
         //Enter button
-        Button enterButton = new Button("Enter");
+        enterButton = new Button("Enter");
         enterButton.setStyle("-fx-background-color: lightgreen;");
+        enterButton.setPrefWidth(55.0);
         enterButton.setOnAction(event -> handleUserInput());
+
+        userInputField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                // Simulate a button click when Enter is pressed
+                enterButton.fire();
+            }
+        });
 
         //Input box layout
         HBox inputBox = new HBox(10, userInputField, enterButton);
         inputBox.setBackground(new Background(new BackgroundFill(Color.GOLD, CornerRadii.EMPTY, Insets.EMPTY)));
         inputBox.setPadding(new Insets(5));
-        inputBox.setMinHeight(50);
+        inputBox.setMinHeight(30);
 
-        // Create a BorderPane layout
-        BorderPane root = new BorderPane();
-        root.setCenter(chatHistory); // Chat history in the center
-        root.setBottom(inputBox); // Input box at the bottom
 
-        root.setPadding(new Insets(10));
-        root.setBackground(new Background(new BackgroundFill(Color.LIGHTYELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+        DialogBox dialogBox = DialogBox.getCinnamonDialog(Ui.start(), chatbotImage);
+        dialogContainer.getChildren().addAll(dialogBox);
 
-        Scene scene = new Scene(root, 400, 600);
-        primaryStage.setTitle("ChatBot UI");
+
+        AnchorPane mainLayout = new AnchorPane();
+        mainLayout.getChildren().addAll(scrollPane, inputBox, enterButton);
+
+        AnchorPane.setTopAnchor(scrollPane, 1.0);
+
+        AnchorPane.setBottomAnchor(enterButton, 5.0);
+        AnchorPane.setRightAnchor(enterButton, 5.0);
+
+        AnchorPane.setLeftAnchor(inputBox, 1.0);
+        AnchorPane.setBottomAnchor(inputBox, 1.0);
+        mainLayout.setStyle("-fx-background-color: #ADD8E6;");
+
+        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
+
+
+        scene = new Scene(mainLayout, 400, 600);
+        primaryStage.setTitle("Cinnamonroll");
         primaryStage.setScene(scene);
         primaryStage.show();
-
-        chatHistory.getItems().add(new Message(Ui.start(), false));
 
         Storage.ensureDirectoryExists();
         Storage.loadTasksFromFile(listOfTasks);
@@ -114,16 +124,14 @@ public class Main extends Application {
         }
     }
 
+    @FXML
     private void handleUserInput() {
         String input = userInputField.getText().trim();
-        if (!input.isEmpty()) {
-            // Display user input in the chat history
-            chatHistory.getItems().add(new Message("You: " + input, true));
-            userInputField.clear();
-
-            // Process user input and get reply
-            String reply = processUserInput(input);
-            chatHistory.getItems().add(new Message("LFChat: " + reply, false));
-        }
+        String reply = processUserInput(input);
+        dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(input),
+                DialogBox.getCinnamonDialog(reply, chatbotImage)
+        );
+        userInputField.clear();
     }
 }
