@@ -78,4 +78,34 @@ public class TaskList {
         }
         listOfTasks.add(task);
     }
+
+    /**
+     * Updates a new description to the task.
+     *
+     * @param listOfTasks The list of tasks.
+     * @param taskNumber The index of task to change.
+     * @param newTaskDescription The new description of task.
+     */
+    public static Task updateTaskDescription(ArrayList<Task> listOfTasks, int taskNumber, String newTaskDescription)
+            throws InvalidTaskNumberException {
+        checkIfTaskIsValid(listOfTasks, taskNumber);
+        Task task = listOfTasks.get(taskNumber - 1);
+        task.updateDescription(newTaskDescription);
+        return task;
+    }
+
+    /**
+     * Clone a task to the list of tasks.
+     *
+     * @param listOfTasks The list of tasks to add the new task to.
+     * @param taskNumber The index of task to clone.
+     * @throws InvalidTaskNumberException If the task number is invalid.
+     */
+    public static void cloneTask(ArrayList<Task> listOfTasks, int taskNumber) throws InvalidTaskNumberException {
+        checkIfTaskIsValid(listOfTasks, taskNumber);
+        Task task = listOfTasks.get(taskNumber - 1);
+        listOfTasks.add(task);
+    }
+
+
 }

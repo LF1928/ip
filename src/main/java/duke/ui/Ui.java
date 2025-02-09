@@ -113,4 +113,24 @@ public class Ui {
         }
         return matchingTasks.toString();
     }
+
+    /**
+     * Prints a message when a task is updated.
+     *
+     * @param updatedTask The new Task.
+     * @param oldDescription The description that was to be updated.
+     */
+    public static String updateTaskDescriptionPrint(Task updatedTask, String oldDescription) {
+        return "Got it, sweet pea! \n" + oldDescription + " has been updated to " + updatedTask.getDescription() + " ! \n"
+                + "Fresh and fluffy like a warm pastry~ You're doing amazing!";
+    }
+
+    /**
+     * Prints a message when a task is cloned.
+     *
+     * @param task the task to clone.
+     */
+    public static String cloneTaskPrint(Task task) {
+        return "Okay! \n" + task + " has been duplicated! \n";
+    }
 }

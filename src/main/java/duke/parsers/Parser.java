@@ -103,4 +103,20 @@ public class Parser {
         String[] startEndTime = DateTimeParser.extractStartAndEndTimes(userInput);
         return new String[]{description, startEndTime[0], startEndTime[1]};
     }
+
+    /**
+     * Extracts the new task description from the user input.
+     *
+     * @param userInput The full user input provided by the user.
+     * @return The new task description from the input.
+     * @throws MissingDescriptionException If the description is missing or incorrectly formatted.
+     */
+    public static String extractNewTaskDescription(String userInput) throws MissingDescriptionException {
+        //format: update {taskNumber} {newTaskDescription}
+        String[] parts = userInput.split(" ", 3);
+        if (parts.length < 3) {
+            throw new MissingDescriptionException("Invalid task format! Expected: update {taskNumber} {newTaskDescription}");
+        }
+        return parts[2];
+    }
 }

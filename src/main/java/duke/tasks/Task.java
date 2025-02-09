@@ -29,6 +29,12 @@ public abstract class Task {
     }
 
     /**
+     * Updates the description of the task.
+     */
+    public void updateDescription(String newDescription) {
+        this.description = newDescription;
+    }
+    /**
      * Returns the status icon representing whether the task is done.
      * "X" indicates the task is completed, while a space " " indicates it is not.
      *
