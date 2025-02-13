@@ -22,7 +22,7 @@ import duke.tasks.Task;
 public class Storage {
 
     // The path to the file used for storing tasks
-    private static final String FILE_PATH = "data/LFChat.txt";
+    private static final String FILE_PATH = "data/CinnamorollData.txt";
 
     /**
      * Ensures that the directory for storing task files exists.

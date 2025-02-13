@@ -10,10 +10,10 @@ import duke.parsers.Parser;
 import duke.tasks.Task;
 import javafx.application.Platform;
 
-public class Cinnamonroll {
+public class Cinnamoroll {
     private ArrayList<Task> listOfTasks = new ArrayList<>();
 
-    public Cinnamonroll() {
+    public Cinnamoroll() {
         Storage.ensureDirectoryExists();
         Storage.loadTasksFromFile(listOfTasks);
         assert listOfTasks != null : "listOfTasks should still not be null after loading";

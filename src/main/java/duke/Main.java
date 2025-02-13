@@ -22,7 +22,7 @@ public class Main extends Application {
     private VBox dialogContainer;
     @FXML
     private TextField userInputField;
-    private Cinnamonroll cinnamonroll = new Cinnamonroll();;
+    private Cinnamoroll cinnamoroll = new Cinnamoroll();;
     private final Image chatbotImage = new Image(Objects.requireNonNull(this.getClass()
             .getResourceAsStream("/images/cinnamonroll.jpg")));
 
@@ -33,8 +33,8 @@ public class Main extends Application {
                 DialogBox.getCinnamonDialog(Ui.start(), chatbotImage)
         );
     }
-    public void setChatbot(Cinnamonroll c) {
-        cinnamonroll = c;
+    public void setChatbot(Cinnamoroll c) {
+        cinnamoroll = c;
     }
 
     public void start(Stage stage) {
@@ -45,7 +45,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<duke.Main>getController().setChatbot(cinnamonroll);  // inject the cinnamonroll instance
+            fxmlLoader.<duke.Main>getController().setChatbot(cinnamoroll);  // inject the cinnamoroll instance
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -56,7 +56,7 @@ public class Main extends Application {
     @FXML
     private void handleUserInput() {
         String input = userInputField.getText().trim();
-        String reply = cinnamonroll.processUserInput(input);
+        String reply = cinnamoroll.processUserInput(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input),
                 DialogBox.getCinnamonDialog(reply, chatbotImage)
