@@ -16,10 +16,9 @@ import java.util.Locale;
  */
 public class DateTimeParser {
     private static final List<DateTimeFormatter> DATE_TIME_FORMATTERS = Arrays.asList(
-            DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a", Locale.ENGLISH),
             DateTimeFormatter.ofPattern("d/M/yyyy HHmm"),
             DateTimeFormatter.ofPattern("d-M-yyyy HH:mm"),
-            DateTimeFormatter.ofPattern("d/M/yyyy h:mm a", Locale.ENGLISH)
+            DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a")
     );
 
     /**
@@ -37,7 +36,8 @@ public class DateTimeParser {
                 // Continue to the next formatter
             }
         }
-        throw new DateTimeParseException("Invalid date-time format: " + dateTimeString, dateTimeString, 0);
+        throw new DateTimeParseException("Invalid date-time format: Please enter format in d/M/yyyy HHmm" +
+                " or d-M-yyyy HH:mm for both start and end date-times", dateTimeString, 0);
     }
 
     /**
@@ -48,7 +48,11 @@ public class DateTimeParser {
      * @throws DateTimeParseException If the date string does not match the default format.
      */
     public static LocalDate parseDate(String dateString) throws DateTimeParseException {
-        return LocalDate.parse(dateString);
+        try {
+            return LocalDate.parse(dateString);
+        } catch (DateTimeParseException e) {
+            throw new DateTimeParseException("Invalid date format: Please input in yyyy-mm-dd format!", dateString, 0);
+        }
     }
 
     /**
@@ -90,7 +94,7 @@ public class DateTimeParser {
      * Extracts the start and end times from a command string.
      * The command is expected to contain "/from" and "/to" keywords followed by the start and end times.
      *
-     * @param command The command string (e.g., "event project meeting /from 2/12/2019 2pm /to 4pm").
+     * @param command The command string (e.g., "event project meeting /from 2/12/2019 1800 /to 12/2/2019 2100").
      * @return An array containing the start time string and end time string, or null if the keywords are not found.
      */
     public static String[] extractStartAndEndTimes(String command) {
