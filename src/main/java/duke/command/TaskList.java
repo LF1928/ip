@@ -25,7 +25,7 @@ public class TaskList {
     private static void checkIfTaskIsValid(ArrayList<Task> listOfTasks, int taskNumber)
             throws InvalidTaskNumberException {
         if (taskNumber <= 0 || taskNumber > listOfTasks.size()) {
-            throw new InvalidTaskNumberException("Invalid task number!");
+            throw new InvalidTaskNumberException("Please enter a valid task number!");
         }
     }
 
@@ -58,10 +58,8 @@ public class TaskList {
      *
      * @param listOfTasks The list of tasks to operate on.
      * @param taskNumber The task number of the task to delete.
-     * @throws InvalidTaskNumberException If the task number is invalid.
      */
-    public static void deleteTask(ArrayList<Task> listOfTasks, int taskNumber) throws InvalidTaskNumberException {
-        checkIfTaskIsValid(listOfTasks, taskNumber);
+    public static void deleteTask(ArrayList<Task> listOfTasks, int taskNumber) {
         listOfTasks.remove(taskNumber - 1);
     }
 
@@ -86,12 +84,11 @@ public class TaskList {
      * @param taskNumber The index of task to change.
      * @param newTaskDescription The new description of task.
      */
-    public static Task updateTaskDescription(ArrayList<Task> listOfTasks, int taskNumber, String newTaskDescription)
-            throws InvalidTaskNumberException {
-        checkIfTaskIsValid(listOfTasks, taskNumber);
+    public static Task updateTaskDescription(ArrayList<Task> listOfTasks, int taskNumber, String newTaskDescription) {
         Task task = listOfTasks.get(taskNumber - 1);
         task.updateDescription(newTaskDescription);
         return task;
+
     }
 
     /**
@@ -99,10 +96,8 @@ public class TaskList {
      *
      * @param listOfTasks The list of tasks to add the new task to.
      * @param taskNumber The index of task to clone.
-     * @throws InvalidTaskNumberException If the task number is invalid.
      */
-    public static void cloneTask(ArrayList<Task> listOfTasks, int taskNumber) throws InvalidTaskNumberException {
-        checkIfTaskIsValid(listOfTasks, taskNumber);
+    public static void cloneTask(ArrayList<Task> listOfTasks, int taskNumber) {
         Task task = listOfTasks.get(taskNumber - 1);
         listOfTasks.add(task);
     }

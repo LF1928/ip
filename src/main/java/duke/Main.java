@@ -30,7 +30,7 @@ public class Main extends Application {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().add(
-                DialogBox.getCinnamonDialog(Ui.start(), chatbotImage)
+                DialogBox.getCinnamoDialog(Ui.start(), chatbotImage)
         );
     }
     public void setChatbot(Cinnamoroll c) {
@@ -59,7 +59,7 @@ public class Main extends Application {
         String reply = cinnamoroll.processUserInput(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input),
-                DialogBox.getCinnamonDialog(reply, chatbotImage)
+                DialogBox.getCinnamoDialog(reply, chatbotImage)
         );
         userInputField.clear();
     }

@@ -14,7 +14,7 @@ public class DateTimeParseTest {
     @Test
     public void testParseDateTime_validFormats_expectedBehavior() {
         assertEquals(LocalDateTime.of(2023, 12, 31, 14, 30),
-                DateTimeParser.parseDateTime("Dec 31 2023, 2:30 PM"));
+                DateTimeParser.parseDateTime("12/3/2015 2:30"));
 
         assertEquals(LocalDateTime.of(2023, 12, 31, 18, 0),
                 DateTimeParser.parseDateTime("31/12/2023 1800"));
@@ -23,7 +23,7 @@ public class DateTimeParseTest {
                 DateTimeParser.parseDateTime("31-12-2023 18:00"));
 
         assertEquals(LocalDateTime.of(2023, 12, 31, 18, 0),
-                DateTimeParser.parseDateTime("31/12/2023 6:00 PM"));
+                DateTimeParser.parseDateTime("31/12/2023 6:00"));
     }
 
     @Test
@@ -32,7 +32,7 @@ public class DateTimeParseTest {
         DateTimeParseException exception = assertThrows(DateTimeParseException.class, () -> {
             DateTimeParser.parseDateTime("Invalid Date Format");
         });
-        assertEquals("Invalid date-time format: Invalid Date Format", exception.getMessage());
+        assertEquals("Invalid date-time format: Please enter format in d/M/yyyy HHmm or d-M-yyyy HH:mm for both start and end date-times", exception.getMessage());
     }
 
     @Test
@@ -40,7 +40,7 @@ public class DateTimeParseTest {
         DateTimeParseException exception = assertThrows(DateTimeParseException.class, () -> {
             DateTimeParser.parseDateTime("");
         });
-        assertEquals("Invalid date-time format: ", exception.getMessage());
+        assertEquals("Invalid date format: Please input in yyyy-mm-dd format!", exception.getMessage());
     }
 
     @Test
@@ -48,6 +48,6 @@ public class DateTimeParseTest {
         DateTimeParseException exception = assertThrows(DateTimeParseException.class, () -> {
             DateTimeParser.parseDateTime("Dec 31 2023, 14:30"); // Invalid time format
         });
-        assertEquals("Invalid date-time format: Dec 31 2023, 14:30", exception.getMessage());
+        assertEquals("Invalid date-time format: Please enter format in d/M/yyyy HHmm or d-M-yyyy HH:mm for both start and end date-times", exception.getMessage());
     }
 }

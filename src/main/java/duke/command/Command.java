@@ -73,7 +73,7 @@ public enum Command {
     },
     DELETE {
         @Override
-        public String execute(String input, ArrayList<Task> listOfTasks) throws InvalidTaskNumberException {
+        public String execute(String input, ArrayList<Task> listOfTasks) {
             int taskNumber = Parser.extractTaskNumber(input);
             Task taskToDelete = listOfTasks.get(taskNumber - 1);
             TaskList.deleteTask(listOfTasks, taskNumber);
@@ -91,7 +91,7 @@ public enum Command {
 
     UPDATE {
         @Override
-        public String execute(String input, ArrayList<Task> listOfTasks) throws InvalidTaskNumberException, MissingDescriptionException {
+        public String execute(String input, ArrayList<Task> listOfTasks) throws MissingDescriptionException {
             int taskNumber = Parser.extractTaskNumber(input);
             String oldDescription = listOfTasks.get(taskNumber - 1).getDescription();
             String newTaskDescription = Parser.extractNewTaskDescription(input);
@@ -102,7 +102,7 @@ public enum Command {
 
     CLONE {
         @Override
-        public String execute(String input, ArrayList<Task> listOfTasks) throws InvalidTaskNumberException {
+        public String execute(String input, ArrayList<Task> listOfTasks) {
             int taskNumber = Parser.extractTaskNumber(input);
             TaskList.cloneTask(listOfTasks, taskNumber);
             Task task = listOfTasks.get(taskNumber - 1);

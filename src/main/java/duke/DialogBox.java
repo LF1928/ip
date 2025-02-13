@@ -47,7 +47,7 @@ public class DialogBox extends HBox {
         return new DialogBox(s, null);
     }
 
-    public static DialogBox getCinnamonDialog(String s, Image i) {
+    public static DialogBox getCinnamoDialog(String s, Image i) {
         var db = new DialogBox(s, i);
         db.flip();
         return db;

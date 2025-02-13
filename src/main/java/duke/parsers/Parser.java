@@ -1,7 +1,6 @@
 package duke.parsers;
 
 import duke.command.Command;
-import duke.exceptions.InvalidTaskNumberException;
 import duke.exceptions.MissingDescriptionException;
 
 /**
@@ -36,14 +35,13 @@ public class Parser {
      *
      * @param userInput The full user input provided by the user.
      * @return The task number extracted from the input.
-     * @throws InvalidTaskNumberException If the task number is invalid or cannot be parsed.
      */
-    public static int extractTaskNumber(String userInput) throws InvalidTaskNumberException {
+    public static int extractTaskNumber(String userInput) {
         try {
             String[] parts = userInput.split(" ");
             return Integer.parseInt(parts[1]);
         } catch (NumberFormatException e) {
-            throw new InvalidTaskNumberException("Invalid task number!");
+            throw new NumberFormatException("Invalid task number!");
         }
     }
 

@@ -1,5 +1,6 @@
 package duke;
 
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 import duke.command.Command;
@@ -31,8 +32,11 @@ public class Cinnamoroll {
             }
 
             return response;
-        } catch (MissingDescriptionException | IllegalArgumentException | InvalidTaskNumberException e) {
+        } catch (MissingDescriptionException | IllegalArgumentException | InvalidTaskNumberException |
+                 DateTimeParseException e) {
             return e.getMessage();
+        } catch (IndexOutOfBoundsException e) {
+            return "Please enter a valid task number!";
         }
     }
 }
