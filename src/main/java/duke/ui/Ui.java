@@ -11,13 +11,32 @@ import duke.tasks.Task;
  */
 public class Ui {
     /**
-     * Returns the welcome message and application logo at startup.
+     * Returns the welcome message at startup.
      */
     public static String start() {
         return "Hellu, sunshine! \n"
-                + "Welcome to your fluffy task manager! \n"
+                + " Cinnamoroll is here to help you stay organized! \n"
                 + "Let's tackle your to-dos one cozy step at a time~ \n"
                 + "What's on your mind today?";
+    }
+
+    /**
+     * Returns the help instructions at startup.
+     */
+    public static String help() {
+        return "Here are the commands you can use: \n"
+                + "Add a different Tasks: \n"
+                + "\"todo {description}\" \n"
+                + "\"deadline {description} /by dd/mm/yyy\" \n"
+                + "\"event {description} /from d/M/yyyy HHmm /to d/M/yyyy HHmm\" \n"
+                + "Delete a Task: \"delete {task number}\" \n"
+                + "View Tasks: \"list\" \n"
+                + "Mark a Task: \"mark {task number}\" \n"
+                + "Find Tasks with keywords: \"find {keywords}\" \n"
+                + "Unmark a Task: \"unmark {task number}\" \n"
+                + "Clone a Task: \"clone {task number}\" \n"
+                + "Update description of a Task: \"update {task number} {description}\" \n"
+                + "Try it out!";
     }
 
     /**

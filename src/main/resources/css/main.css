@@ -1,6 +1,7 @@
 .root {
-    main-color: rgb(176, 224, 230);  /* Light blue shade */
-    -fx-background-color: main-color;
+   -fx-background-image: url("../images/wallpaper.png");
+   -fx-background-size: cover;
+   -fx-background-position: center;
 }
 
 .text-field {
@@ -32,7 +33,7 @@
 
 .scroll-bar {
     -fx-font-size: 10px;  /* Change width of scroll bar */
-    -fx-background-color: main-color;
+    -fx-background-color: lightgray;
 }
 
 .scroll-bar .thumb {
