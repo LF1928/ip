@@ -46,7 +46,9 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String s) {
-        return new DialogBox(s, null);
+        var db = new DialogBox(s, null);
+        db.dialog.getStyleClass().add("user-label");
+        return db;
     }
 
     public static DialogBox getCinnamonDialog(String s, Image i) {

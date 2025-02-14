@@ -32,6 +32,9 @@ public class Main extends Application {
         dialogContainer.getChildren().add(
                 DialogBox.getCinnamonDialog(Ui.start(), chatbotImage)
         );
+        dialogContainer.getChildren().add(
+                DialogBox.getCinnamonDialog(Ui.help(), chatbotImage)
+        );
     }
     public void setChatbot(Cinnamonroll c) {
         cinnamonroll = c;
@@ -44,6 +47,7 @@ public class Main extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
+            stage.setTitle("Cinnamoroll Task Manager");
             stage.setScene(scene);
             fxmlLoader.<duke.Main>getController().setChatbot(cinnamonroll);  // inject the cinnamonroll instance
             stage.show();
