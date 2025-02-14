@@ -88,7 +88,7 @@ public class Ui {
         if (task.getDescription().isEmpty()) {
             throw new MissingDescriptionException("Description for the tasks cannot be empty.");
         }
-        return " \"Ooooh, a new task!\n"
+        return " Ooooh, a new task!\n"
                 + "  " + task + "\n"
                 + " has been added! You got this, sweet bun!\n"
                 + " Now you have " + listOfTasks.size() + " tasks in the list!\n";

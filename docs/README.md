@@ -1,30 +1,50 @@
-# LF1928 User Guide
+# Cinnamoroll ChatBot User Guide
 
-// Update the title above to match the actual product name
 
-// Product screenshot goes here
 
-// Product intro goes here
+![Screenshot of app 1](/assets/images/Screenshot of app 1.png)
+![Screenshot of app 2](/assets/images/Screenshot of app 2.png)
 
-## Adding deadlines
+# Cinnamoroll Task Manager
+This is a Cinnamoroll themed task manager that has a cute personality.
+It helps you manage and organise your tasks including tasks with both with and without deadlines.
+It also has some useful features for repeating tasks and tasks with changing descriptions!
+The tasks will be stored in a .txt file and will be loaded everytime you open the application
 
-// Describe the action and its outcome.
+## Features
+1. Add tasks
+    * Todos (only description)
+    * Deadlines (with description and deadline date)
+    * Event (with description and start, end date times)
+2. Delete tasks
+3. Update description of tasks
+4. View list of tasks
+5. Clone tasks
+6. Marks tasks as done/undone
+7. Find tasks with given keywords
 
-// Give examples of usage
+# Example output of some instructions
 
-Example: `keyword (optional arguments)`
+## Adding todo task
 
-// A description of the expected outcome goes here
+Example: `todo homework`
+
+Creates a todo task
 
 ```
-expected output
+ Ooooh, a new task!
+  [T][] homework
+ has been added! You got this, sweet bun!
+ Now you have 2 tasks in the list!
 ```
 
-## Feature ABC
+## Cloning the third task in the list of tasks
 
-// Feature details
+Example: `clone 3`
 
+clones task of number 3
 
-## Feature XYZ
-
-// Feature details
+```
+ Okay!
+ [D][] hw (by: Dec 27 2018) has been duplicated!
+```
