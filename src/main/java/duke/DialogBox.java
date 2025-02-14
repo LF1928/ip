@@ -32,6 +32,8 @@ public class DialogBox extends HBox {
         dialog.setText(text);
         if (img != null){
             displayPicture.setImage(img);
+        } else {
+            getChildren().remove(displayPicture);
         }
     }
 
