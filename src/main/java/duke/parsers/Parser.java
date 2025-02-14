@@ -113,7 +113,8 @@ public class Parser {
         //format: update {taskNumber} {newTaskDescription}
         String[] parts = userInput.split(" ", 3);
         if (parts.length < 3) {
-            throw new MissingDescriptionException("Invalid task format! Expected: update {taskNumber} {newTaskDescription}");
+            throw new MissingDescriptionException("Invalid task format! Expected: update "
+                    + "{taskNumber} {newTaskDescription}");
         }
         return parts[2];
     }

@@ -10,15 +10,24 @@ import duke.exceptions.MissingDescriptionException;
 import duke.parsers.Parser;
 import duke.tasks.Task;
 import javafx.application.Platform;
-
+/**
+ * Represents the Chatbot.
+ */
 public class Cinnamoroll {
     private ArrayList<Task> listOfTasks = new ArrayList<>();
 
+    /**
+     * Creates cinnamoroll object.
+     */
     public Cinnamoroll() {
         Storage.ensureDirectoryExists();
         Storage.loadTasksFromFile(listOfTasks);
         assert listOfTasks != null : "listOfTasks should still not be null after loading";
     }
+
+    /**
+     * Processes the user input to return a reply string.
+     */
     public String processUserInput(String input) {
         try {
             Command command = Parser.parse(input);
@@ -32,8 +41,8 @@ public class Cinnamoroll {
             }
 
             return response;
-        } catch (MissingDescriptionException | IllegalArgumentException | InvalidTaskNumberException |
-                 DateTimeParseException e) {
+        } catch (MissingDescriptionException | IllegalArgumentException | InvalidTaskNumberException
+                 | DateTimeParseException e) {
             return e.getMessage();
         } catch (IndexOutOfBoundsException e) {
             return "Please enter a valid task number!";

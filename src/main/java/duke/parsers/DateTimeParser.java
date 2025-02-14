@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * A utility class for parsing and formatting dates and times.
@@ -36,8 +35,8 @@ public class DateTimeParser {
                 // Continue to the next formatter
             }
         }
-        throw new DateTimeParseException("Invalid date-time format: Please enter format in d/M/yyyy HHmm" +
-                " or d-M-yyyy HH:mm for both start and end date-times", dateTimeString, 0);
+        throw new DateTimeParseException("Invalid date-time format: Please enter format in d/M/yyyy HHmm"
+                + " or d-M-yyyy HH:mm for both start and end date-times", dateTimeString, 0);
     }
 
     /**

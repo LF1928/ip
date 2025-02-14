@@ -32,7 +32,8 @@ public class DateTimeParseTest {
         DateTimeParseException exception = assertThrows(DateTimeParseException.class, () -> {
             DateTimeParser.parseDateTime("Invalid Date Format");
         });
-        assertEquals("Invalid date-time format: Please enter format in d/M/yyyy HHmm or d-M-yyyy HH:mm for both start and end date-times", exception.getMessage());
+        assertEquals("Invalid date-time format: Please enter format in d/M/yyyy HHmm "
+                + "or d-M-yyyy HH:mm for both start and end date-times", exception.getMessage());
     }
 
     @Test
@@ -48,6 +49,7 @@ public class DateTimeParseTest {
         DateTimeParseException exception = assertThrows(DateTimeParseException.class, () -> {
             DateTimeParser.parseDateTime("Dec 31 2023, 14:30"); // Invalid time format
         });
-        assertEquals("Invalid date-time format: Please enter format in d/M/yyyy HHmm or d-M-yyyy HH:mm for both start and end date-times", exception.getMessage());
+        assertEquals("Invalid date-time format: Please enter format in d/M/yyyy HHmm or d-M-yyyy HH:mm "
+                + "for both start and end date-times", exception.getMessage());
     }
 }

@@ -140,7 +140,8 @@ public class Ui {
      * @param oldDescription The description that was to be updated.
      */
     public static String updateTaskDescriptionPrint(Task updatedTask, String oldDescription) {
-        return "Got it, sweet pea! \n" + oldDescription + " has been updated to " + updatedTask.getDescription() + " ! \n"
+        return "Got it, sweet pea! \n" + oldDescription + " has been updated to " + updatedTask.getDescription()
+                + " ! \n"
                 + "Fresh and fluffy like a warm pastry~ You're doing amazing!";
     }
 
