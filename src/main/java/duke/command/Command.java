@@ -28,6 +28,12 @@ public enum Command {
             return Ui.listTasks(listOfTasks);
         }
     },
+    HELP {
+        @Override
+        public String execute(String input, ArrayList<Task> listOfTasks) {
+            return Ui.help();
+        }
+    },
     MARK {
         @Override
         public String execute(String input, ArrayList<Task> listOfTasks) throws InvalidTaskNumberException {

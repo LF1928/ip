@@ -40,9 +40,6 @@ public class Main extends Application {
         dialogContainer.getChildren().add(
                 DialogBox.getCinnamoDialog(Ui.start(), chatbotImage)
         );
-        dialogContainer.getChildren().add(
-                DialogBox.getCinnamoDialog(Ui.help(), chatbotImage)
-        );
     }
 
     /**

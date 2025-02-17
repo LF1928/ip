@@ -1,8 +1,7 @@
+T | 0 | project
+D | 0 | project | 2025-06-15
+E | 1 | meeting | Apr 05 2025, 9:00 am | Apr 05 2025, 10:30 am
+E | 0 | exercise | Jan 20 2025, 6:00 am | Jan 20 2025, 7:00 am
+D | 0 | shopping | 2025-02-20
+D | 0 | reading | 2025-03-10
 T | 0 | homework
-T | 0 | describe
-D | 0 | hw | 2018-12-27
-E | 0 | hw | Feb 14 2025, 4:00 pm | Feb 14 2025, 6:00 pm
-E | 0 | hw | Feb 12 2005, 6:00 pm | Feb 13 2005, 7:00 pm
-E | 0 | hw | Feb 14 2025, 4:00 pm | Feb 14 2025, 6:00 pm
-T | 1 | homework
-D | 0 | hw | 2018-12-27
