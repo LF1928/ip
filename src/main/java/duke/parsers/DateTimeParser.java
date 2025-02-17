@@ -16,7 +16,7 @@ import java.util.List;
 public class DateTimeParser {
     private static final List<DateTimeFormatter> DATE_TIME_FORMATTERS = Arrays.asList(
             DateTimeFormatter.ofPattern("d/M/yyyy HHmm"),
-            DateTimeFormatter.ofPattern("d-M-yyyy HH:mm"),
+            DateTimeFormatter.ofPattern("d-M-yyyy HHmm"),
             DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a")
     );
 
@@ -36,7 +36,7 @@ public class DateTimeParser {
             }
         }
         throw new DateTimeParseException("Invalid date-time format: Please enter format in d/M/yyyy HHmm"
-                + " or d-M-yyyy HH:mm for both start and end date-times", dateTimeString, 0);
+                + " or d-M-yyyy HHmm for both start and end date-times", dateTimeString, 0);
     }
 
     /**
