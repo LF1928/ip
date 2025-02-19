@@ -116,7 +116,6 @@ public class Parser {
      * @throws MissingDescriptionException If the description is missing or incorrectly formatted.
      */
     public static String extractNewTaskDescription(String userInput) throws MissingDescriptionException {
-        //format: update {taskNumber} {newTaskDescription}
         String[] parts = userInput.split(" ", 3);
         if (parts.length < 3) {
             throw new MissingDescriptionException("Invalid task format! Expected: update "
