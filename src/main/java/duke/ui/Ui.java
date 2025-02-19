@@ -27,7 +27,7 @@ public class Ui {
         return "Here are the commands you can use: \n"
                 + "Add a different Tasks: \n"
                 + " - todo {description} \n"
-                + " - deadline {description} /by dd/mm/yyy \n"
+                + " - deadline {description} /by yyyy-mm-dd \n"
                 + " - event {description} /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm \n"
                 + "Delete a Task: \"delete {task number}\" \n"
                 + "View Tasks: \"list\" \n"
