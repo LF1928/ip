@@ -26,16 +26,16 @@ public class Ui {
     public static String help() {
         return "Here are the commands you can use: \n"
                 + "Add a different Tasks: \n"
-                + "\"todo {description}\" \n"
-                + "\"deadline {description} /by dd/mm/yyy\" \n"
-                + "\"event {description} /from d/M/yyyy HHmm /to d/M/yyyy HHmm\" \n"
+                + " - todo {description} \n"
+                + " - deadline {description} /by dd/mm/yyy \n"
+                + " - event {description} /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm \n"
                 + "Delete a Task: \"delete {task number}\" \n"
                 + "View Tasks: \"list\" \n"
                 + "Mark a Task: \"mark {task number}\" \n"
                 + "Find Tasks with keywords: \"find {keywords}\" \n"
                 + "Unmark a Task: \"unmark {task number}\" \n"
                 + "Clone a Task: \"clone {task number}\" \n"
-                + "Update description of a Task: \"update {task number} {description}\" \n"
+                + "Update description of a Task: \"update {task number} {description}\" \n\n"
                 + "Try it out!";
     }
 

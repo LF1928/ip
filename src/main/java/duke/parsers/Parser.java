@@ -82,6 +82,9 @@ public class Parser {
         }
         String description = userInput.substring(9, userInput.indexOf("/by")).trim();
         String deadline = DateTimeParser.extractDateTime(userInput);
+        if (deadline == null || deadline.isEmpty()) {
+            throw new MissingDescriptionException("U can't leave the date blank!");
+        }
         return new String[]{description, deadline};
     }
 
@@ -99,6 +102,9 @@ public class Parser {
         }
         String description = userInput.substring(6, userInput.indexOf("/from")).trim();
         String[] startEndTime = DateTimeParser.extractStartAndEndTimes(userInput);
+        if (startEndTime == null || startEndTime[0] == null || startEndTime[1] == null) {
+            throw new MissingDescriptionException("U can't leave the date blank!");
+        }
         return new String[]{description, startEndTime[0], startEndTime[1]};
     }
 
